@@ -23,5 +23,6 @@ description: Use when writing or reviewing code in any of these domains — user
 2. review 时: 对照相关小节逐条核, 命中的条目在 review 意见里引用原条目。
 3. 跨多个领域的任务 (如全栈功能) 读多个文件, 但仍按小节裁剪, 不整吞。
 4. 修 bug 时优先查同域条目 — 大概率这个坑已经有名字了; 修完记得按第 7 章的闭环把新教训固化。
+5. 改动收尾时跑 `checks/gravity-audit.sh <目标repo>` — 机器能守的条目自动扫, 命中要么改对要么行内加 `gravity-ok: 理由`。
 
 条目末尾括号内是来源 commit 短哈希 (无前缀 = 项目 A, `B xxx` = 项目 B), 仅作溯源锚点, 源仓库私有。

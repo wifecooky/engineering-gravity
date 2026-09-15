@@ -26,6 +26,22 @@
 | [6. 流程 / 协作](lessons/06-process.md) | 移植考古、修复与审计、任务拆解、架构演进、仓库卫生与 CI |
 | [7. 元经验](lessons/07-meta.md) | 把教训变成机制的闭环 |
 
+## 机械检查: checks/gravity-audit.sh
+
+331 条经验里"机器能守"的子集已固化成扫描脚本 (第 7 章元经验的实践: 结构性防护才阻复发, 注释和"下次注意"不阻):
+
+```bash
+checks/gravity-audit.sh /path/to/your/repo          # 扫存量
+GRAVITY_SQL_ANSI=1 checks/gravity-audit.sh .        # 可选: SQL 可移植纪律
+```
+
+- 每条检查标注对应 lessons 章节与来源 commit; ERROR 命中退出非零, 可作 CI gate
+- 豁免机制: 命中行内写 `gravity-ok: 理由`
+- 覆盖: 恒真过滤 / JSX 渲染字面 0 / 空 catch / XSS 面 / 全局 smooth scroll / index 作 key / antd destroyOnHidden 与 showSearch 配方 / e2e networkidle 与固定 sleep / 无排序 findFirst 等
+- grep 不到的经验仍是 [人审项], review 时对照 lessons/ 人查
+
+实测: 对两个源项目回扫, 各自都扫出了"教训已入册但存量没清完"的真实命中 — 脚本存在的意义本身被脚本证明了。
+
 ## 作为 Claude Code skill 使用
 
 ```bash
